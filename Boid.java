@@ -16,7 +16,7 @@ public class Boid {
 	private static final float MAXVELOCITY = 2.25f;
 	private static final float RANGE = 175;
 	private static final float PERSONALSPACE = 125;
-	private static final float SEPARATIONWEIGHT = 0.1875f;
+	private static final float SEPARATIONWEIGHT = 0.125f;
 	private static final float ALIGHTMENTWEIGHT = 0.125f;
 	private static final float COHESIONWIEGHT = 0.125f;
 
@@ -55,16 +55,13 @@ public class Boid {
 			
 			//average
 			if(separationCount > 0) {
-				separationForce.divide(separationCount); //dir of average dir of every boid in range
 				separationForce.normalize();
 				separationForce.scale(SEPARATIONWEIGHT);
 				this.dir.add(separationForce);
 			}
-			alignmentForce.divide(nearBoids.size()); //dir of average dir of every boid in range
 			alignmentForce.normalize();
 			alignmentForce.scale(ALIGHTMENTWEIGHT);
 			this.dir.add(alignmentForce);
-			cohesionForce.divide(nearBoids.size()); //dir of average postion of every boid in rage
 			cohesionForce.normalize();
 			cohesionForce.scale(COHESIONWIEGHT);
 			this.dir.add(cohesionForce);
@@ -78,13 +75,13 @@ public class Boid {
 		
 		//stay in bounds
 		if(this.x <= 0) {
-			this.x = 1920;
-		} else if(this.x >= 1920) {
+			this.x = 960;
+		} else if(this.x >= 960) {
 			this.x = 0;
 		}
 		if(this.y <= 0) {
-			this.y = 1080;
-		} else if(this.y >= 1080) {
+			this.y = 540;
+		} else if(this.y >= 540) {
 			this.y = 0;
 		}
 	}

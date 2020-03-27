@@ -47,12 +47,12 @@ public class Main extends Canvas implements Runnable {
 	private void init() {
 		//engine
 		this.frame = new JFrame("2D Engine");
-		this.setPreferredSize(new Dimension(1920, 1080));
-		this.setMaximumSize(new Dimension(1920, 1080));
-		this.setMinimumSize(new Dimension(1920, 1080));
-		this.frame.setPreferredSize(new Dimension(1920, 1080));
-		this.frame.setMaximumSize(new Dimension(1920, 1080));
-		this.frame.setMinimumSize(new Dimension(1920, 1080));
+		this.setPreferredSize(new Dimension(960, 540));
+		this.setMaximumSize(new Dimension(960, 540));
+		this.setMinimumSize(new Dimension(960, 540));
+		this.frame.setPreferredSize(new Dimension(960, 540));
+		this.frame.setMaximumSize(new Dimension(960, 540));
+		this.frame.setMinimumSize(new Dimension(960, 540));
 		this.frame.add(this);
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.setLocationRelativeTo(null);
