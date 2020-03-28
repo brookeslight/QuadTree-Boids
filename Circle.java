@@ -19,12 +19,8 @@ public class Circle {
 		return (this.r > 0 && Math.hypot(x1 - this.x, y1 - this.y) <= this.r);
 	}
 	
-	public boolean intersects(Circle c) {
-	    return (this.r > 0 && c.r > 0 && Math.hypot(c.x - this.x, c.y - this.y) <= (this.r + c.r));
-	}
-	
-	public boolean intersects(Bounds b) {
-		return (this.r > 0 && b.w > 0 && b.h > 0 && Math.hypot(this.x - Math.max(b.x, Math.min(b.x + b.w, this.x)), this.y - Math.max(b.y, Math.min(b.y + b.h, this.y))) <= this.r);
+	public boolean intersects(Rectangle r) {
+		return (this.r > 0 && r.w > 0 && r.h > 0 && Math.hypot(this.x - Math.max(r.x, Math.min(r.x + r.w, this.x)), this.y - Math.max(r.y, Math.min(r.y + r.h, this.y))) <= this.r);
 	}
 
 }

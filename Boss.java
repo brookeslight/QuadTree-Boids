@@ -6,10 +6,10 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Boss {
 	private CopyOnWriteArrayList<Boid> boids = new CopyOnWriteArrayList<Boid>();
-	private QuadTree tree = new QuadTree(new Bounds(0, 0, 1920, 1080));
+	private QuadTree tree = new QuadTree(new Rectangle(0, 0, 960, 540));
 	
 	public void tick() {
-		this.tree = new QuadTree(new Bounds(0, 0, 1920, 1080));
+		this.tree = new QuadTree(new Rectangle(0, 0, 960, 540));
 		for(Boid b: this.boids) {
 			this.tree.insert(b);
 		}
@@ -38,9 +38,9 @@ public class Boss {
 		this.boids.clear();
 	}
 	
-	public ArrayList<Boid> getNearByBoids(Circle b) {
+	public ArrayList<Boid> getNearByBoids(Circle c) {
 		ArrayList<Boid> near = new ArrayList<Boid>();
-		this.tree.query(b, near);
+		this.tree.query(c, near);
 		return near;
 	}
 

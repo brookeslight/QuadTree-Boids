@@ -6,18 +6,18 @@ import java.util.ArrayList;
 
 public class QuadTree {
 	
-	private Bounds bounds;
+	private Rectangle rect;
 	private QuadTree[] nodes;
 	private Boid data;
 	
-	public QuadTree(Bounds bounds) {
-		this.bounds = bounds;
+	public QuadTree(Rectangle rect) {
+		this.rect = rect;
 		this.data = null;
 		this.nodes = null;
 	}
 	
 	public boolean insert(Boid e) {
-		if(this.bounds.contains(e.getX(), e.getY()) == false) { //if the bounds doesn't have the point then return
+		if(this.rect.contains(e.getX(), e.getY()) == false) { //if the bounds doesn't have the point then return
 			return false;
 		}
 		
@@ -56,8 +56,8 @@ public class QuadTree {
 		}
 	}
 	
-	public void query(Bounds r, ArrayList<Boid> result) {
-		if(this.bounds.intersects(r) == false) { //i am not in the search area
+	public void query(Rectangle r, ArrayList<Boid> result) {
+		if(this.rect.intersects(r) == false) { //i am not in the search area
 			return;
 		}else {
 			if(this.nodes != null && this.data == null) { //has nodes
@@ -72,7 +72,7 @@ public class QuadTree {
 	}
 	
 	public void query(Circle c, ArrayList<Boid> result) {
-		if(c.intersects(this.bounds) == false) { //i am not in the search area
+		if(c.intersects(this.rect) == false) { //i am not in the search area
 			return;
 		}else {
 			if(this.nodes != null && this.data == null) { //has nodes
@@ -88,10 +88,10 @@ public class QuadTree {
 	
 	private void split() {
 	    this.nodes = new QuadTree[4];
-	    this.nodes[0] = new QuadTree(new Bounds(this.bounds.x, this.bounds.y, this.bounds.w/2, this.bounds.h/2)); //nw
-	    this.nodes[1] = new QuadTree(new Bounds(this.bounds.x + this.bounds.w/2, this.bounds.y, this.bounds.w/2, this.bounds.h/2)); //ne
-	    this.nodes[2] = new QuadTree(new Bounds(this.bounds.x + this.bounds.w/2, this.bounds.y+this.bounds.h/2, this.bounds.w/2, this.bounds.h/2)); //se
-	    this.nodes[3] = new QuadTree(new Bounds(this.bounds.x, this.bounds.y+this.bounds.h/2, this.bounds.w/2, this.bounds.h/2)); //sw
+	    this.nodes[0] = new QuadTree(new Rectangle(this.rect.x, this.rect.y, this.rect.w/2, this.rect.h/2)); //nw
+	    this.nodes[1] = new QuadTree(new Rectangle(this.rect.x + this.rect.w/2, this.rect.y, this.rect.w/2, this.rect.h/2)); //ne
+	    this.nodes[2] = new QuadTree(new Rectangle(this.rect.x + this.rect.w/2, this.rect.y+this.rect.h/2, this.rect.w/2, this.rect.h/2)); //se
+	    this.nodes[3] = new QuadTree(new Rectangle(this.rect.x, this.rect.y+this.rect.h/2, this.rect.w/2, this.rect.h/2)); //sw
 	}
 	
 	public void render(Graphics g) {
@@ -102,7 +102,7 @@ public class QuadTree {
 			this.nodes[3].render(g);
 		}else {
 			g.setColor(Color.white);
-			g.drawRect((int)this.bounds.x, (int)this.bounds.y, (int)this.bounds.w, (int)this.bounds.h);
+			g.drawRect((int)this.rect.x, (int)this.rect.y, (int)this.rect.w, (int)this.rect.h);
 		}
 	}
 
